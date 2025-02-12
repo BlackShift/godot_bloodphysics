@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5cghneot0uvp"]
+
+[ext_resource type="PackedScene" uid="uid://qcmrf7u1heaw" path="res://common/hud.tscn" id="1_mv1do"]
+[ext_resource type="Script" path="res://multimesh/blood_multi_layer.gd" id="2_fq2bs"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_fat50"]
+
+[node name="MultimeshDemo" type="Node2D"]
+
+[node name="Hud" parent="." instance=ExtResource("1_mv1do")]
+
+[node name="PanelContainer2" type="PanelContainer" parent="Hud"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Hud/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Hud/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hud/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Visible Instances: "
+
+[node name="Control" type="Control" parent="Hud/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="visible_label" type="Label" parent="Hud/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Hud/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hud/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Instance Count:"
+
+[node name="Control" type="Control" parent="Hud/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="max_inst_label" type="Label" parent="Hud/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+
+[node name="autofill" type="CheckButton" parent="Hud/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "AutoFill"
+
+[node name="CheckButton" type="CheckButton" parent="Hud/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Check Placement"
+
+[node name="blood_multi_layer" type="Node2D" parent="."]
+script = ExtResource("2_fq2bs")
+region = Rect2i(288, 162, 576, 324)
+
+[node name="BloodMulti" type="MultiMeshInstance2D" parent="blood_multi_layer"]
+multimesh = SubResource("MultiMesh_fat50")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
