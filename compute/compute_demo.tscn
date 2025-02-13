@@ -1,7 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4elbdf734bju"]
+[gd_scene load_steps=7 format=3 uid="uid://b4elbdf734bju"]
 
+[ext_resource type="Script" path="res://compute/compute_demo.gd" id="1_k1t0p"]
 [ext_resource type="PackedScene" uid="uid://qcmrf7u1heaw" path="res://common/hud.tscn" id="1_mlads"]
+[ext_resource type="Texture2D" uid="uid://rgcyewm0a40" path="res://icon.svg" id="2_gd8y1"]
+[ext_resource type="Shader" path="res://compute/blood_alpha.gdshader" id="3_al32t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0c3w1"]
+shader = ExtResource("3_al32t")
+shader_parameter/color = Color(0.989629, 0, 0.271195, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ht01t"]
+size = Vector2(576, 320)
 
 [node name="ComputeDemo" type="Node2D"]
+script = ExtResource("1_k1t0p")
+blit_texture = ExtResource("2_gd8y1")
 
 [node name="Hud" parent="." instance=ExtResource("1_mlads")]
+
+[node name="PanelContainer2" type="PanelContainer" parent="Hud"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -105.0
+offset_bottom = 31.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud/PanelContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="autofill" type="CheckButton" parent="Hud/PanelContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Autofill"
+
+[node name="blood_sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0c3w1")
+position = Vector2(576, 324)
+texture = SubResource("PlaceholderTexture2D_ht01t")
+
+[node name="DecayTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true

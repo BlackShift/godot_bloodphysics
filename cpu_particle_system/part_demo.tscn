@@ -1,7 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://6vqu20e10f4e"]
+[gd_scene load_steps=5 format=3 uid="uid://6vqu20e10f4e"]
 
 [ext_resource type="PackedScene" uid="uid://qcmrf7u1heaw" path="res://common/hud.tscn" id="1_lvwa6"]
+[ext_resource type="Texture2D" uid="uid://cu1j21mmtye61" path="res://common/one_pixel_red.png" id="2_c5oda"]
+
+[sub_resource type="Curve" id="Curve_okmkv"]
+max_value = 5.0
+_data = [Vector2(0, 0), 0.0, 5.0, 0, 1, Vector2(1, 5), 5.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_cyxem"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="PartDemo" type="Node2D"]
 
 [node name="Hud" parent="." instance=ExtResource("1_lvwa6")]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(590, 322)
+amount = 186624
+texture = ExtResource("2_c5oda")
+emission_shape = 3
+emission_rect_extents = Vector2(288, 162)
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_okmkv")
+color_ramp = SubResource("Gradient_cyxem")

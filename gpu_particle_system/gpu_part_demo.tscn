@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://6aoybqqnnbg7"]
+
+[ext_resource type="PackedScene" uid="uid://qcmrf7u1heaw" path="res://common/hud.tscn" id="1_ng3ij"]
+[ext_resource type="Texture2D" uid="uid://cu1j21mmtye61" path="res://common/one_pixel_red.png" id="2_3ssv4"]
+
+[sub_resource type="Curve" id="Curve_p0xw0"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r1rgh"]
+texture_mode = 1
+curve = SubResource("Curve_p0xw0")
+
+[sub_resource type="Curve" id="Curve_gpbgf"]
+max_value = 5.0
+_data = [Vector2(0, 0), 0.0, 5.0, 0, 1, Vector2(1, 5), 5.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yhs8b"]
+curve = SubResource("Curve_gpbgf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0memj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(288, 162, 1)
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_yhs8b")
+alpha_curve = SubResource("CurveTexture_r1rgh")
+
+[node name="GpuPartDemo" type="Node2D"]
+
+[node name="Hud" parent="." instance=ExtResource("1_ng3ij")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(576, 324)
+amount = 186624
+process_material = SubResource("ParticleProcessMaterial_0memj")
+texture = ExtResource("2_3ssv4")
+visibility_rect = Rect2(-288, -162, 576, 324)

@@ -14,7 +14,7 @@ func _ready() -> void:
 	vsync.toggled.connect(vsync_toggle)
 	panel_container.grab_focus()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	fps.text = String.num(Performance.get_monitor(Performance.TIME_FPS),2)
 	draw_calls.text = String.num(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),0)
 

@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://coimlbk702i7l"
+path="res://.godot/imported/blood_compute_blit.glsl-81eac7660d643171524a83b097e46a85.res"
+
+[deps]
+
+source_file="res://compute/blood_compute_blit.glsl"
+dest_files=["res://.godot/imported/blood_compute_blit.glsl-81eac7660d643171524a83b097e46a85.res"]
+
+[params]
+
